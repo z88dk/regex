@@ -1,3 +1,7 @@
+New in 20:11 2017-08-07 windows build, is the addition of a CMakeLists.txt
+to facilitate the cross-port building of `regex`, to generate native build 
+files.
+
 New in alpha3.8p1: Bug fix for integer overflow in regcomp for excessively
 long pattern strings. CERT Vulnerability Note VU#695940. Found by Guido
 Vranken. - Gary Houston, 25 February 2015.
