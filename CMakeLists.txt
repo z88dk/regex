@@ -27,11 +27,14 @@ if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
 endif() 
 
 if(WIN32 AND MSVC)
-    # turn off various warnings - none needed in this compile
+    # turn off various warnings
     set(WARNING_FLAGS "${WARNING_FLAGS} /wd4996")
+    # C4267: '=': conversion from 'size_t' to 'sopno'
+    # C4244: '=': conversion from '__int64' to 'regoff_t'
     # foreach(warning 4244 4251 4267 4275 4290 4786 4305)
-    #     set(WARNING_FLAGS "${WARNING_FLAGS} /wd${warning}")
-    # endforeach(warning)
+    foreach(warning 4244 4267 )
+         set(WARNING_FLAGS "${WARNING_FLAGS} /wd${warning}")
+    endforeach()
     set( MSVC_FLAGS "-DNOMINMAX -D_USE_MATH_DEFINES -D_CRT_SECURE_NO_WARNINGS -D_SCL_SECURE_NO_WARNINGS -D__CRT_NONSTDC_NO_WARNINGS" )
     # if (${MSVC_VERSION} EQUAL 1600)
     #    set( MSVC_LD_FLAGS "/FORCE:MULTIPLE" )
