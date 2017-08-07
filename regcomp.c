@@ -4,11 +4,11 @@
 #include <ctype.h>
 #include <limits.h>
 #include <stdlib.h>
-#include <regex.h>
 
+/* local headers */
+#include "regex.h"
 #include "utils.h"
 #include "regex2.h"
-
 #include "cclass.h"
 #include "cname.h"
 

@@ -4,8 +4,8 @@
 #include <limits.h>
 #include <stdlib.h>
 #include <sys/types.h>
-#include <regex.h>
-
+/* local headers */
+#include "regex.h"
 #include "utils.h"
 #include "regex2.h"
 #include "debug.ih"
