@@ -1,10 +1,17 @@
+/* main.c 
+  re test source
+*/
+#include <sys/types.h>
+#include <stdlib.h> // for atoi, ...
 #include <stdio.h>
 #include <string.h>
-#include <sys/types.h>
 #include <assert.h>
 /* local headers */
 #include "regex.h"
 #include "main.ih"
+#ifdef _MSC_VER // local getopt source
+#include "utils\getopt.h"
+#endif
 
 char *progname;
 int debug = 0;
@@ -78,7 +85,7 @@ char *argv[];
 	if (err) {
 		len = regerror(err, &re, erbuf, sizeof(erbuf));
 		fprintf(stderr, "error %s, %d/%d `%s'\n",
-			eprint(err), len, sizeof(erbuf), erbuf);
+			eprint(err), (int)len, (int)sizeof(erbuf), erbuf);
 		exit(status);
 	}
 	regprint(&re, stdout);	
@@ -96,14 +103,14 @@ char *argv[];
 	if (err) {
 		len = regerror(err, &re, erbuf, sizeof(erbuf));
 		fprintf(stderr, "error %s, %d/%d `%s'\n",
-			eprint(err), len, sizeof(erbuf), erbuf);
+			eprint(err), (int)len, (int)sizeof(erbuf), erbuf);
 		exit(status);
 	}
 	if (!(copts&REG_NOSUB)) {
 		len = (int)(subs[0].rm_eo - subs[0].rm_so);
 		if (subs[0].rm_so != -1) {
 			if (len != 0)
-				printf("match `%.*s'\n", len,
+				printf("match `%.*s'\n", (int)len,
 					argv[optind] + subs[0].rm_so);
 			else
 				printf("match `'@%.1s\n",
@@ -231,8 +238,8 @@ int opts;			/* may not match f1 */
 		/* unexpected error or wrong error */
 		len = regerror(err, &re, erbuf, sizeof(erbuf));
 		fprintf(stderr, "%d: %s error %s, %d/%d `%s'\n",
-					line, type, eprint(err), len,
-					sizeof(erbuf), erbuf);
+					line, type, eprint(err), (int)len,
+					(int)sizeof(erbuf), erbuf);
 		status = 1;
 	} else if (err == 0 && opt('C', f1)) {
 		/* unexpected success */
@@ -262,8 +269,8 @@ int opts;			/* may not match f1 */
 		/* unexpected error or wrong error */
 		len = regerror(err, &re, erbuf, sizeof(erbuf));
 		fprintf(stderr, "%d: %s exec error %s, %d/%d `%s'\n",
-					line, type, eprint(err), len,
-					sizeof(erbuf), erbuf);
+					line, type, eprint(err), (int)len,
+					(int)sizeof(erbuf), erbuf);
 		status = 1;
 	} else if (err != 0) {
 		/* nothing more to check */
@@ -499,7 +506,7 @@ efind(name)
 char *name;
 {
 	static char efbuf[100];
-	size_t n;
+	// size_t n;
 	regex_t re;
 
 	sprintf(efbuf, "REG_%s", name);
