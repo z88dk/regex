@@ -12,4 +12,7 @@ x64/*
 Makefile
 libregex.a
 re-test
+.vs/*
+*.VC.db
+
 
