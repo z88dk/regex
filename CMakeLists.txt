@@ -77,7 +77,14 @@ set(${name}_SRCS
 set(${name}_HDRS
     ${dir}/regex.h
     )
-add_library( ${name} ${${name}_SRCS} ${${name}_HDRS} )
+set(${name}_NOIHDRS
+    ${dir}/cclass.h
+    ${dir}/cname.h
+    ${dir}/regex2.h
+    ${dir}/utils.h
+    )
+
+add_library( ${name} ${${name}_SRCS} ${${name}_HDRS} ${${name}_NOIHDRS} )
 list(APPEND add_LIBS ${name})
 # deal with install, if any...
 install( TARGETS ${name}
@@ -95,15 +102,9 @@ install(FILES ${${name}_HDRS} DESTINATION include)
 set(name re-test)
 set(dir .)
 set(${name}_SRCS
-    ${dir}/debug.c
     ${dir}/main.c
+    ${dir}/debug.c
     ${dir}/split.c
-    )
-set(${name}_HDRS
-    ${dir}/cclass.h
-    ${dir}/cname.h
-    ${dir}/regex2.h
-    ${dir}/utils.h
     )
 if (MSVC)
     list(APPEND ${name}_SRCS ${dir}/utils/getopt.c)
