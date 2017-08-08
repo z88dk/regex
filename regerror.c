@@ -7,7 +7,10 @@
 /* local headers */
 #include "regex.h"
 #include "utils.h"
-#include "regerror.ih"
+
+/* #include "regerror.ih" // why generate this */
+/* forward references */
+static char *regatoi(const regex_t *preg, char *localbuf);
 
 /*
  = #define	REG_OKAY	 0
