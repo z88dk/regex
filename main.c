@@ -8,10 +8,20 @@
 #include <assert.h>
 /* local headers */
 #include "regex.h"
-#include "main.ih"
 #ifdef _MSC_VER // local getopt source
 #include "utils\getopt.h"
 #endif
+
+/* #include "main.ih" // why generate this? */
+/* forward refs */
+void regress(FILE *in);
+void try(char *f0, char *f1, char *f2, char *f3, char *f4, int opts);
+int options(int type, char *s);
+int opt(int c, char *s);
+void fixstr(register char *p);
+char *check(char *str, regmatch_t sub, char *should);
+static char *eprint(int err);
+static int efind(char *name);
 
 char *progname;
 int debug = 0;

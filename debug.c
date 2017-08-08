@@ -8,7 +8,12 @@
 #include "regex.h"
 #include "utils.h"
 #include "regex2.h"
-#include "debug.ih"
+
+/* #include "debug.ih" // why generate this */
+/* forward refs */
+void regprint(regex_t *r, FILE *d);
+static void s_print(register struct re_guts *g, FILE *d);
+static char *regchar(int ch);
 
 /*
  - regprint - print a regexp for debugging
