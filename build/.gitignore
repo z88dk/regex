@@ -9,3 +9,7 @@ cmake_install.cmake
 *.dir/*
 *.sln
 x64/*
+Makefile
+libregex.a
+re-test
+
