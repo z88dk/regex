@@ -107,8 +107,8 @@ set(${name}_SRCS
     ${dir}/split.c
     )
 if (MSVC)
-    list(APPEND ${name}_SRCS ${dir}/utils/getopt.c)
-    list(APPEND ${name}_HDRS ${dir}/utils/getopt.h)
+    list(APPEND ${name}_SRCS ${dir}/getopt/getopt.c)
+    list(APPEND ${name}_HDRS ${dir}/getopt/getopt.h)
 endif ()
 add_executable( ${name} ${${name}_SRCS} ${${name}_HDRS} )
 if (add_LIBS)

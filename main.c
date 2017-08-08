@@ -9,7 +9,7 @@
 /* local headers */
 #include "regex.h"
 #ifdef _MSC_VER // local getopt source
-#include "utils\getopt.h"
+#include "getopt\getopt.h"
 #endif
 
 /* #include "main.ih" // why generate this? */
