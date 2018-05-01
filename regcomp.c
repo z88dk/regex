@@ -1066,7 +1066,7 @@ register cset *cs;
 	register cset *top = &p->g->sets[p->g->ncsets];
 	register size_t css = (size_t)p->g->csetsize;
 
-	for (i = 0; i < css; i++)
+	for (i = 0; (size_t)i < css; i++)
 		CHsub(cs, i);
 	if (cs == top-1)	/* recover only the easy case */
 		p->g->ncsets--;
@@ -1097,7 +1097,7 @@ register cset *cs;
 	for (cs2 = &p->g->sets[0]; cs2 < top; cs2++)
 		if (cs2->hash == h && cs2 != cs) {
 			/* maybe */
-			for (i = 0; i < css; i++)
+			for (i = 0; (size_t)i < css; i++)
 				if (!!CHIN(cs2, i) != !!CHIN(cs, i))
 					break;		/* no */
 			if (i == css)
@@ -1124,7 +1124,7 @@ register cset *cs;
 	register int i;
 	register size_t css = (size_t)p->g->csetsize;
 
-	for (i = 0; i < css; i++)
+	for (i = 0; (size_t)i < css; i++)
 		if (CHIN(cs, i))
 			return((char)i);
 	assert(never);
@@ -1144,7 +1144,7 @@ register cset *cs;
 	register size_t css = (size_t)p->g->csetsize;
 	register int n = 0;
 
-	for (i = 0; i < css; i++)
+	for (i = 0; (size_t)i < css; i++)
 		if (CHIN(cs, i))
 			n++;
 	return(n);
@@ -1503,8 +1503,8 @@ struct parse *p;
 register struct re_guts *g;
 {
 	register sop *scan;
-	sop *start;
-	register sop *newstart;
+	sop *start = NULL;
+	register sop *newstart = NULL;
 	register sopno newlen;
 	register sop s;
 	register char *cp;
